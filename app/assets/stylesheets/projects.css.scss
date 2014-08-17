@@ -1,0 +1,82 @@
+// Place all the styles related to the list controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.centerText {
+	text-align: center;
+	padding-bottom: 3em;
+}
+
+.buttonPos {
+	position: relative;
+	width: 4em;
+	right: 2em;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 4em;
+}
+
+.buttonSize {
+	width: 10em;
+}
+
+.shapeTable {
+	width: 40em;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	display: block;
+
+}
+
+.check {
+  text-align: center;
+   /* Double-sized Checkboxes */
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+}
+
+.checkWidth {
+	width: 5em;
+}
+
+.backHead {
+	position: relative;
+	float: right;
+}
+
+.styleSymbol {	
+	position: relative;
+	display: inline-block;
+  	font-size: 30px;
+  	line-height: 1.5;
+  	border-radius: 14px;
+  	padding-left: 20px;
+  	padding-right: 15px;
+  	padding-bottom: 0;
+  	padding-top: 0;
+  	float: left;
+}
+
+.panelStyle {
+	padding: 0;
+	margin-bottom: 0;
+}
+
+.textWidth {
+	width: 30em;
+}
+
+.textRender {
+	color: grey;
+	font: sans-serif;
+}
+
+.taskProp {
+	background-color: white;
+}
+
+.headText {
+	font: sans-serif;
+}

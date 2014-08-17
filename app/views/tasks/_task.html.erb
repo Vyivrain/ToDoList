@@ -1,0 +1,21 @@
+<tr class = "taskProp">
+    <td class = "checkWidth" > 
+     
+        <%= check_box_tag task, nil, false, class: "check" %> 
+      
+    </td>
+      
+    <td class = "textWidth"> <p class = "form-control-static textRender"> <%= task.name %> </p> </td>
+
+    <td>
+      <span>
+
+        <%= link_to "", nil, remote: true, class: "glyphicon glyphicon-sort colorTask" %>
+
+        <%= link_to "", edit_task_path(task), class: "glyphicon glyphicon-pencil colorTask" %>
+
+        <%= link_to "", task, method: :delete, remote: true, class: "glyphicon glyphicon-trash colorTask" %>
+
+      </span> 
+    </td>
+</tr>

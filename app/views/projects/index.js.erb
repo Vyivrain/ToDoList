@@ -1,0 +1,13 @@
+$("input[type=checkbox]").click( function() {
+
+	if ( $(this).is(":checked") )
+	{
+		$(this).closest(".taskProp").css( "background-color", "orange" );
+				
+	}
+	else
+	{
+		$(this).closest(".taskProp").css( "background-color", "white" );
+	}
+} );
+	

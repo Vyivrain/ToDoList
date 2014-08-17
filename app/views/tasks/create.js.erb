@@ -1,0 +1,71 @@
+showPencil = function(el) {
+	el.find(".glyphicon-pencil").fadeIn("normal");
+}
+
+hidePencil = function(el) {
+	el.find(".glyphicon-pencil").fadeOut("normal");
+}
+
+showTrash = function(el) {
+	el.find(".glyphicon-trash").fadeIn("normal");
+}
+hideTrash = function(el) {
+	el.find(".glyphicon-trash").fadeOut("normal");
+}
+showArrow = function(el) {
+	el.find(".glyphicon-sort").fadeIn("normal");
+}
+hideArrow = function(el) {
+	el.find(".glyphicon-sort").fadeOut("normal");
+}
+
+showRow = function(row) {
+	row.mouseenter( function() {
+		showPencil($(this));
+		showTrash($(this));
+		showArrow($(this));
+	});	
+}
+
+hideRow = function(row) {
+	row.mouseleave( function() {
+		hidePencil($(this));
+		hideTrash($(this));
+		hideArrow($(this));
+	});
+}
+
+appendRow = function( el ) {
+	project_name = "<%= @project_name %>";
+	project_name = project_name.trim();
+	$(".headText").each( function() {
+		var this_name = $(this).text().trim();
+		if( this_name === project_name )
+		{
+			$(this).parent().siblings(".panel-default").find(".panel-body").find("table").append("<%= escape_javascript( render( partial: @task ) ) %>");
+		}
+
+	} );
+}
+
+swapRows = function(rowTable) {
+	rowTable.find(".glyphicon-sort").click( function() {
+		row = $(this).closest("tr");
+		row.insertBefore( row.prev() );
+	} );
+		
+} 
+
+trashRowClick = function(row) {
+	row.find(".glyphicon-trash").click( function() {
+		$(this).closest(".taskProp").fadeOut("normal");
+	});
+}
+
+
+
+appendRow( $(".headText") );
+showRow( $(".taskProp") );
+hideRow( $(".taskProp") );
+swapRows( $(".taskProp") );
+trashRowClick( $(".taskProp") );

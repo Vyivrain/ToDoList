@@ -1,0 +1,17 @@
+<%= image_tag "sky.jpg", class: "full-screen-background-image" %>
+
+<div class = "wrapper">
+
+<h2 class = "centerText" > <strong> SIMPLE TODO LISTS </strong> </h2>
+
+    <%= render partial: "form_index", collection: @projects, as: :project %> 
+
+<div class = "centerObject">
+  <%= button_to new_project_path, { method: :get, class: "btn btn-primary buttonSize" } do %>
+
+      <p class = "glyphicon glyphicon-plus" style: "word-spacing: 5px" > Add TODO List</p>
+
+  <% end %>
+</div>
+
+</div>

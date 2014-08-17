@@ -1,0 +1,39 @@
+<div class="shapeTable panel panel-primary">
+  <div class = "panel-heading">
+      
+      <p class = "glyphicon glyphicon-list-alt headText"> <%= project.name %> </p>
+      <span class = "backHead" >
+
+        <%= link_to "", edit_project_path(project), class: "glyphicon glyphicon-pencil color" %>
+        <%= link_to "", project, method: :delete, remote: true, class: "glyphicon glyphicon-trash color" %>  
+      </span>
+  </div>
+
+  <div class = "panel panel-default" style = "margin-bottom:0" >
+
+    <div class = "panel-heading">
+      <div class = "input-group">
+      <i class = "glyphicon glyphicon-plus-sign styleSymbol"> </i>
+            
+            <%= form_tag create_path, remote: true do %>
+
+              <%= text_field_tag :task_name, nil, { class: "textField", placeholder: "Start typing here to create a task...", style: "height:35px;font-size:20px" } %> 
+
+              <%= hidden_field_tag :status, "uncompleted" %>
+              <%= hidden_field_tag :project_name, project.name %>
+
+              <%= submit_tag "Add Task", class: "btn btn-success buttonTask" %> 
+            <% end %>
+      </div>  
+    </div>
+
+    <div class = "panel-body" >
+      <table class = "table table-bordered table-hover" >
+        <%= render partial: "tasks/task", collection: project.tasks, as: :task %>
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
