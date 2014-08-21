@@ -17,9 +17,9 @@
   </div>
   <div class="field">
     <%= f.label :status %><br>
-    <%= radio_button_tag :status, "uncompleted", true %>
+    <%= f.radio_button :status, "uncompleted" %>
     <%= f.label "Uncompleted" %><br>
-    <%= radio_button_tag :status, "completed" %>
+    <%= f.radio_button :status, "completed" %>
     <%= f.label "Completed" %>
   </div>
    <div class="field">

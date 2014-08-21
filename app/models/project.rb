@@ -60,15 +60,13 @@ class Project < ActiveRecord::Base
 	#get the list of project names having more than 10 tasks in status ‘completed’. Order by
 	#project_id
 	def self.finishedProj
-		projects = Project.all
-
 		result = []
 
 		Project.find_each do |project|
 
-			completed = project.tasks.where( status: "completed" ).count
+			count_completed = project.tasks.select("status").where(["status = ?", "completed"]).count
 
-			result << completed
+			result << completed if count_completed > 10
 
 		end
 
