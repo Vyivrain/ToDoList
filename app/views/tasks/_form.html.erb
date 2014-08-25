@@ -24,7 +24,7 @@
   </div>
    <div class="field">
     <%= f.label :dead_line %><br>
-    <%= f.date_field :dead_line %>
+    <%= f.date_field :dead_line, value: @task.dead_line %>
   </div> 
   <div class="actions">
     <%= f.submit %>
