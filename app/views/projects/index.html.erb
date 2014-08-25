@@ -6,10 +6,11 @@
 
     <%= render partial: "form_index", collection: @projects, as: :project %> 
 
-<div class = "centerObject">
+<div class="centerObject">
+  
   <%= button_to new_project_path, { method: :get, class: "btn btn-primary buttonSize" } do %>
 
-      <p class = "glyphicon glyphicon-plus" style: "word-spacing: 5px" > Add TODO List</p>
+      <i class = "glyphicon glyphicon-plus" > Add TODO List</i>
 
   <% end %>
 </div>

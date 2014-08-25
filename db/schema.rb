@@ -26,13 +26,11 @@ ActiveRecord::Schema.define(version: 20140816153419) do
 
   create_table "tasks", force: true do |t|
     t.string   "name"
-    t.string   "status"
+    t.boolean  "status"
     t.string   "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "dead_line"
   end
-
-  add_index "tasks", ["id"], name: "index_tasks_on_id"
 
 end

@@ -39,8 +39,24 @@ hideRow = (row) ->
 
 swapRows = (rowTable) ->
 	rowTable.find(".glyphicon-sort").click ->
+		$.cookie("swap", "")
 		row = $(this).closest("tr")
+		row_id = row.find(".check").attr("id")
+		prev_row_id = row.prev().find(".check").attr("id")
+		$.cookie( "swap", $.cookie("swap") + row_id + "&" + prev_row_id, { path: '/' } )
 		row.insertBefore( row.prev() )
+
+		$.ajax({
+	 		url: 'tasks/update_data'
+	 		type: 'POST'
+	 		data: { swap: $.cookie("swap") }
+ 		})
+
+		$.cookie("swap", "", { path: '/' } )
+		# Swap
+		temp = $.cookie( row_id )
+		$.cookie( row_id, $.cookie( prev_row_id ) )
+		$.cookie( prev_row_id, temp )
 
 trashTableClick = (table) ->
 	table.find(".backHead").find(".glyphicon-trash").click ->
@@ -49,6 +65,17 @@ trashTableClick = (table) ->
 trashRowClick = (row) ->
 	row.find(".glyphicon-trash").click ->
 		$(this).closest(".taskProp").fadeOut("normal")
+
+checkClick = (checkbox) ->
+	checkbox.click ->
+		console.log( $.cookie() )
+		value = $(this).attr("id")
+		if $(this).prop("checked") 
+			$(this).closest(".taskProp").css( "background-color", "orange" )
+			$.cookie( value , "show", { path: '/' } )
+		else
+			$(this).closest(".taskProp").css( "background-color", "white" )
+			$.cookie( value , "hide", { path: '/' } )
 
 $(document).ready ->
 	table = $(".shapeTable")
@@ -63,13 +90,12 @@ $(document).ready ->
 	swapRows(rowTable)
 	trashTableClick(table)
 	trashRowClick(rowTable)
-
-	$("input[type=checkbox]").click ->
-		if $(this).is(":checked") 
-			$(this).closest(".taskProp").css( "background-color", "orange" )
-		else
-			$(this).closest(".taskProp").css( "background-color", "white" )
-
-
-
+	checkClick(checkbox)
 	
+
+	checkbox.each ->
+		value = $(this).attr("id")
+		if $.cookie(value) == "show"
+			$(this).trigger('click')
+			$(this).closest(".taskProp").css( "background-color", "orange" )
+		

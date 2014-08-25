@@ -7,16 +7,22 @@
 }
 
 .buttonPos {
+  position: relative;
+  word-spacing: -7px;
+  width: 4em;
+  right: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4em;
+}
+
+.centerObject {
 	position: relative;
 	width: 4em;
-	right: 2em;
+	height: 2em;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 4em;
-}
-
-.buttonSize {
-	width: 10em;
 }
 
 .shapeTable {
@@ -25,7 +31,6 @@
 	margin-right: auto;
 	margin-bottom: 20px;
 	display: block;
-
 }
 
 .check {

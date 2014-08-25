@@ -30,13 +30,20 @@
 	margin-bottom: 0.4em;
 }
 
+i {
+  word-spacing: -10px;
+  margin-bottom: 8px;
+  margin-right: 3px;
+}
+
+.buttonSize {
+  width: 10em;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 a:hover {
 	background-color: transparent;
-}
-
-p {
-	word-spacing: -7px;
 }
 
 .color {

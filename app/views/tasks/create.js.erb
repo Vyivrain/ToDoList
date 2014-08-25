@@ -51,7 +51,22 @@ appendRow = function( el ) {
 swapRows = function(rowTable) {
 	rowTable.find(".glyphicon-sort").click( function() {
 		row = $(this).closest("tr");
+		row_id = row.find(".check").attr("id");
+		prev_row_id = row.prev().find(".check").attr("id");
+		$.cookie( "swap", $.cookie("swap") + row_id + "&" + prev_row_id, { path: '/' } );
 		row.insertBefore( row.prev() );
+
+		$.ajax({
+	 		url: 'tasks/update_data',
+	 		type: 'POST',
+	 		data: { swap: $.cookie("swap") }
+ 		});
+
+		$.cookie( "swap", "", { path: '/' } );
+		// Swap
+		var temp = $.cookie( row_id );
+		$.cookie( row_id, $.cookie( prev_row_id ) );
+		$.cookie( prev_row_id, temp );
 	} );
 		
 } 
@@ -62,10 +77,35 @@ trashRowClick = function(row) {
 	});
 }
 
+checkClick = function(checkbox) {
+	checkbox.click( function() {
+		if ( $(this).is(":checked") )
+		{
+			$(this).closest(".taskProp").css( "background-color", "orange" );
+			$.cookie( value , "show", { path: '/' } );		
+		}
+		else
+		{
+			$(this).closest(".taskProp").css( "background-color", "white" );
+			$.cookie( value , "hide", { path: '/' } );
 
+		}
+	});
+}
 
 appendRow( $(".headText") );
 showRow( $(".taskProp") );
 hideRow( $(".taskProp") );
 swapRows( $(".taskProp") );
 trashRowClick( $(".taskProp") );
+$(".textField").val("");
+
+checkClick( $("input[type=checkbox]") );
+
+$.each( $("input[type=checkbox]"), function() {
+	value = $(this).attr("id");
+		if( $.cookie(value) === "show" ) {
+			$(this).trigger('click');
+			$(this).closest(".taskProp").css( "background-color", "orange" );
+		}
+});

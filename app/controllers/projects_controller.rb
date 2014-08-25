@@ -52,11 +52,9 @@ class ProjectsController < ApplicationController
       if @project.update(project_params)
         format.html { redirect_to projects_path }
         format.json { render :show, status: :ok, location: @project }
-        format.js
       else
         format.html { render :edit }
         format.json { render json: @project.errors, status: :unprocessable_entity }
-        format.js
       end
     end
   end
@@ -71,6 +69,8 @@ class ProjectsController < ApplicationController
       format.js
     end
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

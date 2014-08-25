@@ -17,14 +17,14 @@
   </div>
   <div class="field">
     <%= f.label :status %><br>
-    <%= f.radio_button :status, "uncompleted" %>
+    <%= f.radio_button :status, false %>
     <%= f.label "Uncompleted" %><br>
-    <%= f.radio_button :status, "completed" %>
+    <%= f.radio_button :status, true %>
     <%= f.label "Completed" %>
   </div>
    <div class="field">
     <%= f.label :dead_line %><br>
-    <%= f.text_field :dead_line %>
+    <%= f.date_field :dead_line %>
   </div> 
   <div class="actions">
     <%= f.submit %>

@@ -46,6 +46,24 @@ class TasksController < ApplicationController
     end
   end
 
+  def update_data
+
+    ids = params[:swap].split('&')
+
+    row1 = Task.where( id: ids[0] ).first
+    row2 = Task.where( id: ids[1] ).first
+
+    temp_hash1 = { name: row1.name, status: row1.status, project_id: row1.project_id, dead_line: row1.dead_line }
+    temp_hash2 = { name: row2.name, status: row2.status, project_id: row2.project_id, dead_line: row2.dead_line }
+
+    @task = row1
+    @task.update_attributes( temp_hash2 )
+
+    @task = row2
+    @task.update_attributes( temp_hash1 )
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
