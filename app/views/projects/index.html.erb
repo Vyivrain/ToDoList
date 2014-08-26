@@ -1,18 +1,22 @@
 <%= image_tag "sky.jpg", class: "full-screen-background-image" %>
 
+<div class = "navbar">
+			<%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-primary color" %>
+			<%= link_to 'Edit registration', edit_user_registration_path, class: "btn btn-primary color" %>
+			<h2 class = "centerText" > <strong> SIMPLE TODO LISTS </strong> </h2>
+</div>
+
 <div class = "wrapper">
 
-<h2 class = "centerText" > <strong> SIMPLE TODO LISTS </strong> </h2>
+	<%= render partial: "form_index", collection: @projects, as: :project %>
 
-    <%= render partial: "form_index", collection: @projects, as: :project %> 
+	<div class="centerObject">
+	  
+	  <%= button_to new_project_path, { method: :get, class: "btn btn-primary buttonSize" } do %>
 
-<div class="centerObject">
-  
-  <%= button_to new_project_path, { method: :get, class: "btn btn-primary buttonSize" } do %>
+	      <i class = "glyphicon glyphicon-plus" > Add TODO List</i>
 
-      <i class = "glyphicon glyphicon-plus" > Add TODO List</i>
-
-  <% end %>
-</div>
+	  <% end %>
+	</div>
 
 </div>
