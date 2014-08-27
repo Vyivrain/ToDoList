@@ -74,4 +74,8 @@ class Project < ActiveRecord::Base
 
 	end
 
+	def self.orderPosition(project_id)
+		Project.find(project_id).tasks.order(:position)
+	end
+
 end

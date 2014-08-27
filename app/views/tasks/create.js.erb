@@ -57,16 +57,13 @@ swapRows = function(rowTable) {
 		row.insertBefore( row.prev() );
 
 		$.ajax({
-	 		url: 'tasks/update_data',
-	 		type: 'POST',
-	 		data: { swap: $.cookie("swap") }
- 		});
+				url: 'tasks/update_data',
+				type: 'POST',
+				data: { swap: $.cookie("swap") }
+			});
 
 		$.cookie( "swap", "", { path: '/' } );
-		// Swap
-		var temp = $.cookie( row_id );
-		$.cookie( row_id, $.cookie( prev_row_id ) );
-		$.cookie( prev_row_id, temp );
+
 	} );
 		
 } 
@@ -79,6 +76,7 @@ trashRowClick = function(row) {
 
 checkClick = function(checkbox) {
 	checkbox.click( function() {
+		value = $(this).attr("id");
 		if ( $(this).is(":checked") )
 		{
 			$(this).closest(".taskProp").css( "background-color", "orange" );
@@ -105,7 +103,8 @@ checkClick( $("input[type=checkbox]") );
 $.each( $("input[type=checkbox]"), function() {
 	value = $(this).attr("id");
 		if( $.cookie(value) === "show" ) {
-			$(this).trigger('click');
+			$(this).prop('checked', true);  
 			$(this).closest(".taskProp").css( "background-color", "orange" );
 		}
 });
+

@@ -19,7 +19,7 @@
 
               <%= text_field_tag :task_name, nil, { class: "textField", placeholder: "Start typing here to create a task...", style: "height:35px;font-size:20px" } %> 
 
-              <%= hidden_field_tag :status, "uncompleted" %>
+              <%= hidden_field_tag :status, false %>
               <%= hidden_field_tag :project_name, project.name %>
 
               <%= submit_tag "Add Task", class: "btn btn-success buttonTask" %> 
@@ -29,7 +29,7 @@
 
     <div class = "panel-body" >
       <table class = "table table-bordered table-hover" >
-        <%= render partial: "tasks/task", collection: project.tasks, as: :task %>
+        <%= render partial: "tasks/task", collection: project.tasks.order(:position), as: :task %>
       </table>
 
     </div>

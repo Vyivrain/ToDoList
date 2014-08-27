@@ -47,16 +47,13 @@ swapRows = (rowTable) ->
 		row.insertBefore( row.prev() )
 
 		$.ajax({
-	 		url: 'tasks/update_data'
-	 		type: 'POST'
-	 		data: { swap: $.cookie("swap") }
- 		})
+				url: 'tasks/update_data'
+				type: 'POST'
+				data: { swap: $.cookie("swap") }
+			})
 
-		$.cookie("swap", "", { path: '/' } )
-		# Swap
-		temp = $.cookie( row_id )
-		$.cookie( row_id, $.cookie( prev_row_id ) )
-		$.cookie( prev_row_id, temp )
+		$.cookie( "swap", "", { path: '/' } )
+		
 
 trashTableClick = (table) ->
 	table.find(".backHead").find(".glyphicon-trash").click ->
@@ -68,7 +65,6 @@ trashRowClick = (row) ->
 
 checkClick = (checkbox) ->
 	checkbox.click ->
-		console.log( $.cookie() )
 		value = $(this).attr("id")
 		if $(this).prop("checked") 
 			$(this).closest(".taskProp").css( "background-color", "orange" )
@@ -76,6 +72,7 @@ checkClick = (checkbox) ->
 		else
 			$(this).closest(".taskProp").css( "background-color", "white" )
 			$.cookie( value , "hide", { path: '/' } )
+
 
 $(document).ready ->
 	table = $(".shapeTable")
@@ -96,6 +93,9 @@ $(document).ready ->
 	checkbox.each ->
 		value = $(this).attr("id")
 		if $.cookie(value) == "show"
-			$(this).trigger('click')
+			$(this).prop('checked', true )
 			$(this).closest(".taskProp").css( "background-color", "orange" )
 		
+
+	
+

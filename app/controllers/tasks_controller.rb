@@ -10,14 +10,14 @@ class TasksController < ApplicationController
   def create
     @project_name = params[:project_name]
     project = Project.where( name: @project_name ).take!
-    @task = project.tasks.create( name: params[:task_name], status: params[:status], project_id: @project_name )
+    @task = project.tasks.create( name: params[:task_name], status: params[:status], project_id: @project_name, position: project.tasks.count )
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to projects_path, notice: 'Task was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Task was successfully created.' }
         format.js 
       else
-        format.html { redirect_to projects_path }
+        format.html { redirect_to root_path }
       end
     end
   end
@@ -27,7 +27,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to projects_path, notice: 'Task was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
@@ -41,26 +41,31 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to projects_path, notice: 'Task was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   def update_data
 
-    ids = params[:swap].split('&')
+      ids = params[:swap].split('&')
 
-    row1 = Task.where( id: ids[0] ).first
-    row2 = Task.where( id: ids[1] ).first
+      @row1 = Task.find ids.first
+      @row2 = Task.find ids.last
+      
+      puts @row1.name + " " + @row1.position.to_s
+      puts @row2.name + " " + @row2.position.to_s
 
-    temp_hash1 = { name: row1.name, status: row1.status, project_id: row1.project_id, dead_line: row1.dead_line }
-    temp_hash2 = { name: row2.name, status: row2.status, project_id: row2.project_id, dead_line: row2.dead_line }
+      temp = @row1.position
+      @row1.update_attributes(position: @row2.position)
+      @row2.update_attributes(position: temp)
 
-    @task = row1
-    @task.update_attributes( temp_hash2 )
+      puts @row1.name + " " + @row1.position.to_s
+      puts @row2.name + " " + @row2.position.to_s
 
-    @task = row2
-    @task.update_attributes( temp_hash1 )
+      respond_to do |format|
+        format.js
+      end
 
   end
 

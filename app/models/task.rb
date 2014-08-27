@@ -4,17 +4,17 @@ class Task < ActiveRecord::Base
 
 	# get all statuses, not repeating, alphabetically ordered
 	def self.getTasksStatus
-		statuses = Task.order(:status).pluck(:status)	
+		Task.order(:status).pluck(:status)	
 	end
 	#get the tasks for all projects having the name beginning with “N” letter
 	def self.startWithN
-		tasks_names = Task.where( "name LIKE ?", "N%" ).pluck(:name)
+		Task.where( "name LIKE ?", "N%" ).pluck(:name)
 	end
 
 
 	# get the list of tasks with duplicate names. Order alphabetically
 	def self.duplicateNames
-		tasks_names = ( Task.pluck(:name) & Task.distinct.pluck(:name) ).sort!
+		( Task.pluck(:name) & Task.distinct.pluck(:name) ).sort!
 	end
 
 
