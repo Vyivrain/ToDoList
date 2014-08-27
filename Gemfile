@@ -56,4 +56,4 @@ gem 'devise'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'ruby'
+ruby "2.1.2" 
