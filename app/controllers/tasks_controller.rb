@@ -52,16 +52,10 @@ class TasksController < ApplicationController
 
       @row1 = Task.find ids.first
       @row2 = Task.find ids.last
-      
-      puts @row1.name + " " + @row1.position.to_s
-      puts @row2.name + " " + @row2.position.to_s
 
       temp = @row1.position
       @row1.update_attributes(position: @row2.position)
       @row2.update_attributes(position: temp)
-
-      puts @row1.name + " " + @row1.position.to_s
-      puts @row2.name + " " + @row2.position.to_s
 
       respond_to do |format|
         format.js
