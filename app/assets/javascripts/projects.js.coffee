@@ -73,6 +73,12 @@ checkClick = (checkbox) ->
 			$(this).closest(".taskProp").css( "background-color", "white" )
 			$.cookie( value , "hide", { path: '/' } )
 
+saveCheck = (checkbox) ->
+	checkbox.each ->
+		value = $(this).attr("id")
+		if $.cookie(value) == "show"
+			$(this).prop('checked', true )
+			$(this).closest(".taskProp").css( "background-color", "orange" )
 
 $(document).ready ->
 	table = $(".shapeTable")
@@ -89,12 +95,8 @@ $(document).ready ->
 	trashRowClick(rowTable)
 	checkClick(checkbox)
 	
-
-	checkbox.each ->
-		value = $(this).attr("id")
-		if $.cookie(value) == "show"
-			$(this).prop('checked', true )
-			$(this).closest(".taskProp").css( "background-color", "orange" )
+	saveCheck(checkbox)
+	
 		
 
 	

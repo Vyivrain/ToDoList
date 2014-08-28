@@ -91,6 +91,16 @@ checkClick = function(checkbox) {
 	});
 }
 
+saveCheck = function(checkbox) {
+	$.each( checkbox, function() {
+		value = $(this).attr("id");
+			if( $.cookie(value) === "show" ) {
+				$(this).prop('checked', true);  
+				$(this).closest(".taskProp").css( "background-color", "orange" );
+			}
+	});
+}
+
 appendRow( $(".headText") );
 showRow( $(".taskProp") );
 hideRow( $(".taskProp") );
@@ -99,12 +109,6 @@ trashRowClick( $(".taskProp") );
 $(".textField").val("");
 
 checkClick( $("input[type=checkbox]") );
+saveCheck( $("input[type=checkbox]") );
 
-$.each( $("input[type=checkbox]"), function() {
-	value = $(this).attr("id");
-		if( $.cookie(value) === "show" ) {
-			$(this).prop('checked', true);  
-			$(this).closest(".taskProp").css( "background-color", "orange" );
-		}
-});
 
