@@ -43,6 +43,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to root_path, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

@@ -80,6 +80,11 @@ saveCheck = (checkbox) ->
 			$(this).prop('checked', true )
 			$(this).closest(".taskProp").css( "background-color", "orange" )
 
+checkInput = (input) ->
+	input.click ->
+		el = $(this).siblings(".textField")
+		el.effect("highlight", {color:"#FF7575"}, 1000) if el.val() == ""
+
 $(document).ready ->
 	table = $(".shapeTable")
 	rowTable = $(".taskProp")
@@ -97,7 +102,8 @@ $(document).ready ->
 	
 	saveCheck(checkbox)
 	
-		
-
+	checkInput( $(".buttonTask") )
+			
+					  
 	
 
